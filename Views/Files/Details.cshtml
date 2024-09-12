@@ -1,0 +1,15 @@
+﻿@model FileMetadata
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.FileName</h1>
+
+<p>Uploaded Date: @Model.UploadDate</p>
+<br />
+
+<iframe src="@Url.Action("GetFile", "Files", new { id = Model.Id })" width="100%" height="600px"></iframe>
+
+<p>OCR Text:</p>
+<pre>@Model.RecognitionText</pre>

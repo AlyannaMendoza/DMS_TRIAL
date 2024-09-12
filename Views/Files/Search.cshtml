@@ -1,0 +1,42 @@
+﻿<!-- Views/Files/Search.cshtml -->
+@model IEnumerable<FileMetadata>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search OCR Results</h2>
+
+<form asp-controller="Files" asp-action="Search" method="get">
+    <input type="text" name="query" placeholder="Search text" />
+    <button type="submit">Search</button>
+</form>
+
+@if (Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Uploaded Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var document in Model)
+            {
+                <tr>
+                    <td>@document.FileName</td>
+                    <td>@document.UploadDate</td>
+                    <td>
+                        <a asp-controller="Files" asp-action="Details" asp-route-id="@document.Id">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No results found.</p>
+}

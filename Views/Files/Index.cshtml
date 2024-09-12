@@ -1,0 +1,38 @@
+﻿@model IEnumerable<FileMetadata>
+
+@{
+    ViewData["Title"] = "Documents";
+}
+
+<a asp-action="Upload" class="btn btn-success">Upload New File</a>
+<br />
+<br />
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <table class="table">
+                <tr>
+                    <th>File Name</th>
+                    <th>Upload Date</th>
+                    <th>Actions</th>
+                </tr>
+         </table>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped-columns">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@item.FileName</td>
+                        <td>@item.UploadDate</td>
+                        <td>
+                            <a href="@Url.Action("Details", "Files", new { id = item.Id })" class="btn btn-primary">View</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
